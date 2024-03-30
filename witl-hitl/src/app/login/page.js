@@ -1,4 +1,6 @@
 import LoginWithGoogle from "@/components/buttons/LoginWithGoogle";
+import LoginWithGithub from "@/components/buttons/LoginWithGithub";
+
 import React from "react";
 
 export default function LoginPage() {
@@ -11,6 +13,7 @@ export default function LoginPage() {
           Sign In to your account using one of the options given below
         </p>
         <LoginWithGoogle />
+        <LoginWithGithub/>
       </div>
     </div>
   );

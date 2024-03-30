@@ -2,6 +2,7 @@ import NextAuth from "next-auth"
 import clientPromise from '@/libs/mongoClient'
 import GoogleProvider from "next-auth/providers/google";
 import { MongoDBAdapter } from "@auth/mongodb-adapter"
+import GitHubProvider from "next-auth/providers/github";
 
 const handler = NextAuth({
     adapter: MongoDBAdapter(clientPromise),
@@ -9,6 +10,10 @@ const handler = NextAuth({
         GoogleProvider({
           clientId: process.env.GOOGLE_CLIENT_ID,
           clientSecret: process.env.GOOGLE_CLIENT_SECRET
+        }),
+        GitHubProvider({
+          clientId: process.env.GITHUB_ID,
+          clientSecret: process.env.GITHUB_SECRET
         })
       ]
 })
