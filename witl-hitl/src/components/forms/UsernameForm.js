@@ -1,20 +1,23 @@
 'use client'
 
-import RightIcon from "@/components/icons/RightIcon";
 import grabUsername from "@/actions/grabUsername";
 import { useState } from "react";
 import { set } from "mongoose";
 import { redirect } from "next/navigation";
+import SubmitButton from "../buttons/SubmitButton";
+import RightIcon from "../icons/RightIcon";
 
 export default function UsernameForm({ desiredusername }) {
+  
   const [taken, setTaken] = useState(false);
   async function HandleSubmit(formData) {
     const result = await grabUsername(formData);
     setTaken(result === false);
     if (result) {
-      redirect('/account/' + formData.get("username"));
+      redirect('/account?created=' + formData.get("username"));
     }
   }
+
 
   return (
     <form action={HandleSubmit}>
@@ -38,14 +41,10 @@ export default function UsernameForm({ desiredusername }) {
           </div>
         )}
 
-        <button
-          type="submit"
-          className="bg-blue-500 w-full py-2 px-4 text-white flex justify-center
-                    gap-2 items-center "
-        >
-          <span>Claim your username</span>
-          <RightIcon />
-        </button>
+        <SubmitButton>
+            <span>Claim your username</span>
+            <RightIcon/>
+        </SubmitButton>
       </div>
     </form>
   );

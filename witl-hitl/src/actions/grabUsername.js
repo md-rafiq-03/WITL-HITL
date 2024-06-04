@@ -1,8 +1,10 @@
 
 'use server';
 
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { Page } from "@/models/page";
 import mongoose from "mongoose";
+import { getServerSession } from "next-auth";
 
 export default async function grabUsername(formData){
     const username =formData.get('username');
@@ -12,6 +14,11 @@ export default async function grabUsername(formData){
     if(exist){
         return false;
     }else{
-        return await Page.create({uri:username});
+        const session=await getServerSession(authOptions);
+        console.log(session?.user?.email);
+        return await Page.create({
+            uri:username,
+            owner:session?.user?.email,
+        });
     }
 }
