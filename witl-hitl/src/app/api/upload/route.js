@@ -3,7 +3,8 @@ import { NextResponse } from "next/server";
 import cloudinary from "../../../libs/cloudinary";
 import axios from 'axios'
 export async function POST(request) {
-    console.log(request.formData);
+    //console.log("okay");
+    console.log(request);
   try {
     const CLOUDINARY_UPLOAD_PRESET= process.env.CLOUDINARY_UPLOAD_PRESET;
     const CLOUDINARY_CLOUD_NAME= process.env.CLOUDINARY_CLOUD_NAME;
@@ -18,8 +19,8 @@ export async function POST(request) {
         { status: 400 }
       );
     }
-    console.log(requestFormData.get('image'));
-    const imageFile=requestFormData.get('image');
+    console.log(requestFormData.get('file'));
+    const imageFile=requestFormData.get('file');
 
 
     const formData = new FormData();
@@ -27,7 +28,7 @@ export async function POST(request) {
     formData.append("upload_preset", CLOUDINARY_UPLOAD_PRESET);
     console.log("formaData",formData);
     const ImageResponse = await axios.post(
-      "https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/image/upload",
+      `https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/image/upload`,
       formData
     );
     console.log(ImageResponse.data.secure_url);

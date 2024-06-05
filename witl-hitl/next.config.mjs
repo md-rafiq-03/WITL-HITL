@@ -4,9 +4,13 @@ const nextConfig = {
         remotePatterns:[
             {
                 hostname:'*.googleusercontent.com'
+            },
+            {
+                hostname:'res.cloudinary.com'
             }
         ],
     }
 };
+
 
 export default nextConfig;
