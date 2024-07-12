@@ -12,6 +12,7 @@ import { faSave } from "@fortawesome/free-regular-svg-icons";
 import savePageSettings from "@/actions/pageActions";
 import toast from "react-hot-toast";
 import { useState } from "react";
+import SectionBox from "../layout/SectionBox";
 
 export default function PageSettingsForm({ page, user }) {
   const [bgType, setBgType] = useState(page.bgType);
@@ -75,10 +76,11 @@ export default function PageSettingsForm({ page, user }) {
 
 
   return (
-    <div className="-m-4">
+    <div>
+      <SectionBox>
       <form action={saveBaseSettings}>
         <div
-          className=" py-4 min-h-[300px] flex flex-col justify-center items-center bg-cover  bg-center "
+          className=" -m-4 py-4 min-h-[300px] flex flex-col justify-center items-center bg-cover  bg-center "
           style={
             bgType === "color"
               ? { backgroundColor: bgColor }
@@ -152,7 +154,7 @@ export default function PageSettingsForm({ page, user }) {
             <input type="hidden" name="avatar" value={avatar} />
           </div>
         </div>
-        <div className="p-4">
+        <div className="p-0">
           <label className="input-label " htmlFor="nameIn" >
             Display Name
           </label>
@@ -193,6 +195,7 @@ export default function PageSettingsForm({ page, user }) {
           </div>
         </div>
       </form>
+      </SectionBox>
     </div>
   );
 }

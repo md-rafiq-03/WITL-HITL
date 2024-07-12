@@ -36,3 +36,22 @@ export default async function savePageSettings(formData){
     }
     return false;
 }
+
+export async function savePageButtons(formData){
+    mongoose.connect(process.env.MONGO_URI);
+    const session=await getServerSession(authOptions);
+    if(session){
+        const buttonValues={};
+        formData.forEach((value,key)=>{
+            buttonValues[key]=value;
+        });
+
+        const dataToUpdate={buttons:buttonValues};
+        await Page.updateOne(
+            {owner:session?.user?.email},
+            dataToUpdate,
+        );
+        return true;
+    }
+    return false;
+}

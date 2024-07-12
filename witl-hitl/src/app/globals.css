@@ -31,3 +31,6 @@ label.input-label{
     @apply bg-white text-blue-600;
 } 
 
+.sortable-ghost{
+    opacity: .3;
+}
