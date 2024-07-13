@@ -1,4 +1,11 @@
 /** @type {import('next').NextConfig} */
+
+// // next.config.js
+// module.exports = {
+//     reactStrictMode: false,
+//     // Other configurations
+//   };
+  
 const nextConfig = {
     images:{
         remotePatterns:[
