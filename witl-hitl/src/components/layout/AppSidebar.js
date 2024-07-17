@@ -17,7 +17,7 @@ export default function AppSidebar() {
     const path=usePathname();
   return (
     <nav className="flex flex-col text-center mt-8 gap-4 text-gray-700
-    text-gray-500">
+    ">
       <Link 
        href={"/account"} 
        className={"flex gap-4 " + (path==='/account'?"text-blue-500":'')}>

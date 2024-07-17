@@ -6,7 +6,7 @@ import { Page } from "@/models/page";
 import mongoose from "mongoose";
 import PageSettingsForm from "@/components/forms/PageSettingsForm";
 import PageButttonsForm from "@/components/forms/PageButtonsForm";
-import PageLinksForm from "@/components/forms/pageLinksForm";
+import PageLinksForm from "@/components/forms/PageLinksForm";
 
 export default async  function Account({searchParams}){
     mongoose.connect(process.env.MONGO_URI);

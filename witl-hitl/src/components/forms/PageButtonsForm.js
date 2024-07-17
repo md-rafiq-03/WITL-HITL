@@ -24,7 +24,7 @@ export default function PageButttonsForm({page,user}){
         {key:'telegram', label:'telegram', icon:faTelegram,placeholder:'https://telegram.com/profile/...'},
     ];
 
-    const pageSavedButtonsKeys=Object.keys(page.buttons);
+    const pageSavedButtonsKeys = page && page.buttons ? Object.keys(page.buttons) : [];
     const pageSavedButtonsInfo=pageSavedButtonsKeys.map(k=>allButtons.find(b=>b.key==k));
 
     const [activeButtons,setActiveButtons]=useState(pageSavedButtonsInfo);
@@ -60,14 +60,17 @@ export default function PageButttonsForm({page,user}){
         <SectionBox>
             <form action={saveButtons}>
             <h2 className="text-2xl font-bold mb-4 ">Buttons</h2>
-            <ReactSortable list={activeButtons} setList={setActiveButtons}>
+            <ReactSortable 
+                handle=".handle"
+                list={activeButtons} 
+                setList={setActiveButtons}>
             {
                 activeButtons.map((e)=>{
                     return (
                         <div key={e.key} className="mb-4 flex  items-center">
 
-                            <div className="w-48 h-full p-2 flex gap-2 items-center bg-gray-300">
-                                <FontAwesomeIcon icon={faGripLines} className="cursor-pointer text-gray-400" />
+                            <div className="w-56 h-full p-2 flex gap-2 items-center">
+                                <FontAwesomeIcon icon={faGripLines} className="cursor-pointer text-gray-500 handle p-2" />
                                 <FontAwesomeIcon icon={e.icon} />
                                 <span>{upperFirst(e.label)}</span>
                             </div>
@@ -75,12 +78,13 @@ export default function PageButttonsForm({page,user}){
                                 placeholder={e.placeholder}
                                 name={e.key}
                                 type="text" 
-                                defaultValue={page.buttons[e.key]}
+                                defaultValue={page && page.buttons ? page.buttons[e.key] : ''}
                                 style={{marginBottom:'0'}} 
                             />
                             <button 
                                 onClick={()=>removeButton(e)}
-                                type="button" className="py-2 px-4 bg-gray-300 cursor-pointer" >
+                                type="button" 
+                                className="py-2 px-4 bg-gray-300 cursor-pointer" >
                                 <FontAwesomeIcon icon={faTrash} />
                             </button>
                         </div>

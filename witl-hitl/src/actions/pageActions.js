@@ -55,3 +55,15 @@ export async function savePageButtons(formData){
     }
     return false;
 }
+
+export async function savePageLinks(links){
+    mongoose.connect(process.env.MONGO_URI);
+    const session=await getServerSession(authOptions);
+    if(session){
+        await Page.updateOne(
+            {owner:session?.user?.email},
+            {links}
+        );
+    }
+    return false;
+}
